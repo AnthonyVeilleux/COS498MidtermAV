@@ -1,0 +1,19 @@
+FROM node:lts
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies including nodemon for development
+RUN npm install && npm install -g nodemon
+
+# Copy source code
+COPY . .
+
+# Expose port (internal to container network)
+EXPOSE 25565
+
+# Start the application with nodemon for auto-reloading
+CMD ["nodemon", "--watch", ".", "--ext", "js,json", "server.js"]
