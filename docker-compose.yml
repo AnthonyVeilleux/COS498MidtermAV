@@ -13,7 +13,9 @@ services:
 
   # nginx reverse proxy
   nginx:
-    build: ./nginx
+    build: 
+      context: .
+      dockerfile: ./nginx/dockerfile
     container_name: my-nginx-proxy
     restart: unless-stopped
     ports:
